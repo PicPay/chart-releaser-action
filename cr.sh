@@ -64,9 +64,6 @@ main() {
         rm -rf packages
         mkdir -p packages
 
-        rm -rf .cr-release-packages
-        mkdir -p .cr-release-packages
-
         rm -rf .cr-index
         mkdir -p .cr-index
 
@@ -79,7 +76,6 @@ main() {
         done
 
         git_push_charts
-        release_charts
         update_index
     else
         echo "Nothing to do. No chart changes detected."
@@ -238,7 +234,7 @@ lookup_changed_charts() {
 package_chart() {
     local chart="$1"
 
-    local args=("$chart" --package-path .cr-release-packages)
+    local args=("$chart" --package-path .packages)
     if [[ -n "$config" ]]; then
         args+=(--config "$config")
     fi
@@ -250,21 +246,10 @@ package_chart() {
 git_push_charts() {
 
     echo 'Push charts...'
-    mv .cr-release-packages/* packages/
     git add packages/
     git commit -m "Add new chart in repo"
-    git push origin HEAD:gh-pages --force
+    git push origin HEAD:gh-pages
 
-}
-
-release_charts() {
-    local args=(-o "$owner" -r "$repo" -c "$(git rev-parse HEAD)")
-    if [[ -n "$config" ]]; then
-        args+=(--config "$config")
-    fi
-
-    echo 'Releasing charts...'
-    cr upload "${args[@]}"
 }
 
 update_index() {
