@@ -255,6 +255,7 @@ git_push_charts() {
 update_index() {
     echo 'Updating charts repo index...'
     helm repo index packages/ 
+    mv packages/index.yaml .
     git add index.yaml
     git commit -m "Add new index"
     git push origin HEAD:gh-pages --force
