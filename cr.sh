@@ -61,6 +61,9 @@ main() {
     if [[ -n "${changed_charts[*]}" ]]; then
         install_chart_releaser
 
+        rm -rf packages
+        mkdir -p packages
+
         rm -rf .cr-release-packages
         mkdir -p .cr-release-packages
 
@@ -247,10 +250,10 @@ package_chart() {
 git_push_charts() {
 
     echo 'Push charts...'
-    git add .cr-release-packages
-    git add .cr-index
+    mv .cr-release-packages/* packages/
+    git add packages/
     git commit -m "Add new chart in repo"
-    git push origin HEAD:gh-pages
+    git push origin HEAD:gh-pages --force
 
 }
 
