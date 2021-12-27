@@ -246,6 +246,7 @@ package_chart() {
 git_push_charts() {
 
     echo 'Push charts...'
+    rm index.yaml
     git add .
     git commit -m "Add new chart in repo"
     git push origin HEAD:gh-pages --force
