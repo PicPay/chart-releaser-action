@@ -234,7 +234,7 @@ lookup_changed_charts() {
 package_chart() {
     local chart="$1"
 
-    local args=("$chart" --package-path .packages)
+    local args=("$chart" --package-path packages)
     if [[ -n "$config" ]]; then
         args+=(--config "$config")
     fi
