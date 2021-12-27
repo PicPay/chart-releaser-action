@@ -248,7 +248,7 @@ git_push_charts() {
     echo 'Push charts...'
     git add packages/
     git commit -m "Add new chart in repo"
-    git push origin HEAD:gh-pages
+    git push origin HEAD:gh-pages --force
 
 }
 
