@@ -75,7 +75,6 @@ main() {
             fi
         done
 
-        
         git_push_charts
         release_charts
         update_index
@@ -259,10 +258,6 @@ release_charts() {
     if [[ -n "$config" ]]; then
         args+=(--config "$config")
     fi
-
-    echo 'Releasing charts...'
-    cr upload "${args[@]}"
-}
 
     echo 'Releasing charts...'
     cr upload "${args[@]}"
