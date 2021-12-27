@@ -250,7 +250,9 @@ git_push_charts() {
     git add .cr-release-packages
     git add .cr-index
     git commit -m "Add new chart in repo"
+    git checkout --orphan gh-pages
     git push origin gh-pages
+
 }
 
 release_charts() {
