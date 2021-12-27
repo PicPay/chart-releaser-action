@@ -243,6 +243,15 @@ package_chart() {
     cr package "${args[@]}"
 }
 
+git_push_charts() {
+
+    echo 'Push charts...'
+    git add .cr-release-packages
+    git add .cr-index
+    git commit -m "Add new chart in repo"
+    git push origin gh-pages
+}
+
 release_charts() {
     local args=(-o "$owner" -r "$repo" -c "$charts_repo_url" --push)
     if [[ -n "$config" ]]; then
