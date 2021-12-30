@@ -254,7 +254,7 @@ git_push_charts() {
 
 update_index() {
     echo 'Updating charts repo index...'
-    helm repo index packages/ 
+    helm repo index packages/ --url packages 
     mv packages/index.yaml .
     git add index.yaml
     git commit -m "Add new index"
